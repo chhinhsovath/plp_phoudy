@@ -1,0 +1,34 @@
+import { Repository } from 'typeorm';
+import { MenuItem } from '../../entities/menu-item.entity';
+import { UserMenuPermission } from '../../entities/user-menu-permission.entity';
+import { User } from '../../entities/user.entity';
+import { Role } from '../../entities/role.entity';
+import { MenuItemDto } from './dto/menu-item.dto';
+import { UserMenuPermissionDto } from './dto/user-menu-permission.dto';
+import { CreateMenuItemDto } from './dto/create-menu-item.dto';
+import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
+import { MenuItemResponseDto } from './dto/menu-item-response.dto';
+export declare class MenusService {
+    private menuItemRepository;
+    private userMenuPermissionRepository;
+    private userRepository;
+    private roleRepository;
+    constructor(menuItemRepository: Repository<MenuItem>, userMenuPermissionRepository: Repository<UserMenuPermission>, userRepository: Repository<User>, roleRepository: Repository<Role>);
+    createMenuItem(createMenuItemDto: CreateMenuItemDto): Promise<MenuItemResponseDto>;
+    findAllMenuItems(page?: number, limit?: number): Promise<any>;
+    findMenuItemById(id: number): Promise<MenuItemResponseDto>;
+    updateMenuItem(id: number, updateMenuItemDto: UpdateMenuItemDto): Promise<MenuItemResponseDto>;
+    removeMenuItem(id: number): Promise<void>;
+    private convertToResponseDto;
+    getMenuItemsByUserId(userId: number, websiteId?: number, menuType?: string): Promise<MenuItemDto[]>;
+    getPublicMenuItems(websiteId?: number, menuType?: string): Promise<MenuItemDto[]>;
+    getMenuItemsByRole(role: string, websiteId?: number, menuType?: string): Promise<MenuItemDto[]>;
+    getCommonMenuItems(userRole: string, websiteId?: number, menuType?: string): Promise<MenuItemDto[]>;
+    getMenuItemsByType(menuType: string, websiteId?: number): Promise<MenuItemDto[]>;
+    getMenuItemById(id: number): Promise<MenuItemDto>;
+    getMenuItemsByWebsite(websiteId: number, menuType?: string): Promise<MenuItemDto[]>;
+    updateUserMenuPermissions(permissionDto: UserMenuPermissionDto): Promise<void>;
+    getUserMenuPermissions(userId: number): Promise<number[]>;
+    private convertToDto;
+    private convertToSimpleDto;
+}

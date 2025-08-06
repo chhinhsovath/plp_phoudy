@@ -1,0 +1,31 @@
+import { LessonsService } from './lessons.service';
+import { CreateLessonDto } from './dto/create-lesson.dto';
+import { UpdateLessonDto } from './dto/update-lesson.dto';
+import { Lesson } from '../../entities/lesson.entity';
+import { LessonActivityDto } from './dto/lesson-activity.dto';
+import { LessonResponseDto } from './dto/lesson-response.dto';
+import { LessonActivitiesService } from '../lesson-activities/lesson-activities.service';
+import { UpdateLessonActivityDto } from '../lesson-activities/dto/update-lesson-activity.dto';
+import { LessonActivity } from '../../entities/lesson-activity.entity';
+export declare class LessonsController {
+    private readonly lessonsService;
+    private readonly lessonActivitiesService;
+    constructor(lessonsService: LessonsService, lessonActivitiesService: LessonActivitiesService);
+    findAll(): Promise<Lesson[]>;
+    findAllSimplified(subjectId?: number, gradeLevel?: number): Promise<any[]>;
+    findOne(id: number): Promise<Lesson>;
+    getLessonsBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    getAllLessonsBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    getLessonsBySubjectAndGradeOrdered(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    getAllLessonsBySubjectAndGradeOrdered(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    create(createLessonDto: CreateLessonDto, req: any): Promise<Lesson>;
+    update(id: number, updateLessonDto: UpdateLessonDto): Promise<Lesson>;
+    remove(id: number): Promise<void>;
+    getLessonActivitiesBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<LessonActivityDto[]>;
+    getLessonActivitiesBySubjectAndGradeOrdered(subjectId: number, gradeLevel: number): Promise<LessonActivityDto[]>;
+    getLessonActivitiesByLessonId(lessonId: number): Promise<LessonActivityDto[]>;
+    updateActivity(id: number, updateLessonActivityDto: UpdateLessonActivityDto): Promise<LessonActivity>;
+    getSimplifiedLessonsBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<any[]>;
+    getLessonsBySubject(subjectName: string): Promise<LessonResponseDto[]>;
+    getActiveLessonsBySubject(subjectName: string): Promise<LessonResponseDto[]>;
+}

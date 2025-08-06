@@ -1,0 +1,35 @@
+import { Repository } from 'typeorm';
+import { Lesson } from '../../entities/lesson.entity';
+import { LessonActivity } from '../../entities/lesson-activity.entity';
+import { Subject } from '../../entities/subject.entity';
+import { User } from '../../entities/user.entity';
+import { CreateLessonDto } from './dto/create-lesson.dto';
+import { UpdateLessonDto } from './dto/update-lesson.dto';
+import { LessonActivityDto } from './dto/lesson-activity.dto';
+import { LessonResponseDto } from './dto/lesson-response.dto';
+export declare class LessonsService {
+    private lessonRepository;
+    private lessonActivityRepository;
+    private subjectRepository;
+    private userRepository;
+    constructor(lessonRepository: Repository<Lesson>, lessonActivityRepository: Repository<LessonActivity>, subjectRepository: Repository<Subject>, userRepository: Repository<User>);
+    findAll(): Promise<Lesson[]>;
+    findOne(id: number): Promise<Lesson>;
+    findBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    findActiveBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    findBySubjectAndGradeOrderByLessonNumber(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    findActiveBySubjectAndGradeOrderByLessonNumber(subjectId: number, gradeLevel: number): Promise<Lesson[]>;
+    create(createLessonDto: CreateLessonDto, userId: number): Promise<Lesson>;
+    update(id: number, updateLessonDto: UpdateLessonDto): Promise<Lesson>;
+    remove(id: number): Promise<void>;
+    findLessonActivitiesBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<LessonActivityDto[]>;
+    findLessonActivitiesBySubjectAndGradeOrdered(subjectId: number, gradeLevel: number): Promise<LessonActivityDto[]>;
+    findLessonActivitiesByLessonId(lessonId: number): Promise<LessonActivityDto[]>;
+    findSimplifiedBySubjectAndGrade(subjectId: number, gradeLevel: number): Promise<any[]>;
+    private convertToActivityDto;
+    findBySubject(subjectId: number): Promise<LessonResponseDto[]>;
+    findActiveBySubject(subjectId: number): Promise<LessonResponseDto[]>;
+    findBySubjectName(subjectName: string): Promise<LessonResponseDto[]>;
+    findActiveBySubjectName(subjectName: string): Promise<LessonResponseDto[]>;
+    findAllSimplified(subjectId?: number, gradeLevel?: number): Promise<any[]>;
+}

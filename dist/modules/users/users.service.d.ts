@@ -1,0 +1,33 @@
+import { Repository } from 'typeorm';
+import { User } from '../../entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UserResidence } from '../../entities/user-residence.entity';
+import { UserPob } from '../../entities/user-pob.entity';
+import { Province } from '../../entities/province.entity';
+import { District } from '../../entities/district.entity';
+import { Commune } from '../../entities/commune.entity';
+import { Village } from '../../entities/village.entity';
+import { Teacher } from '../../entities/teacher.entity';
+export declare class UsersService {
+    private userRepository;
+    private userResidenceRepository;
+    private userPobRepository;
+    private provinceRepository;
+    private districtRepository;
+    private communeRepository;
+    private villageRepository;
+    private teacherRepository;
+    constructor(userRepository: Repository<User>, userResidenceRepository: Repository<UserResidence>, userPobRepository: Repository<UserPob>, provinceRepository: Repository<Province>, districtRepository: Repository<District>, communeRepository: Repository<Commune>, villageRepository: Repository<Village>, teacherRepository: Repository<Teacher>);
+    private createAdminIfNotExists;
+    create(createUserDto: CreateUserDto): Promise<User>;
+    findAll(page?: number, limit?: number): Promise<any>;
+    findOne(id: number): Promise<any>;
+    findByUsername(username: string): Promise<User | null>;
+    update(id: number, updateData: any): Promise<User>;
+    remove(id: number): Promise<void>;
+    private generateTeacherNumber;
+    createUserWithTeacherRole(createUserDto: CreateUserDto): Promise<User>;
+    findById(id: number): Promise<any>;
+    getUserWithAddressDetails(id: number): Promise<any>;
+    findByStatusAndRole(status?: boolean, roleId?: number, page?: number, limit?: number): Promise<any>;
+}
